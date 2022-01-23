@@ -16,15 +16,7 @@ http.interceptors.response.use((response)=>{
 /**
  * 检测手机号码是否注册
  */
-export const getcellphone=(params)=>{
+export const getartisttopsong=(params)=>{
   return http.get
-  ('/cellphone/existence/check',{params})
+  ('/user/playlist',{params})
 }
-
-/**
- * 手机登录
- */
-export const getloginphone=(params)=>{
-  return http.get('/login/cellphone',{params})
-}
-

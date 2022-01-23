@@ -1,25 +1,23 @@
 <template>
   <div class="musics">
-       <navbar>
+       <!-- <navbar>
           <navbaritem path="/home">
-       <div slot="item-text">首页</div>
+       <div slot="item-text">发现音乐</div>
       </navbaritem>
  
       <navbaritem path="/topic">
-    <div slot="item-text">榜单</div>
+    <div slot="item-text">播客</div>
       </navbaritem>
 
       <navbaritem path="/Mine">
-<div slot="item-text">我的</div>
+<div slot="item-text">视频</div>
       </navbaritem>
 
       <navbaritem path="/search">
-        <div slot="item-text">搜索</div>
-     
+        <div slot="item-text">关注</div> 
       </navbaritem>
-  
-    </navbar>
-  
+    </navbar> -->
+
   </div>
 </template>
 
@@ -29,9 +27,16 @@ import navbaritem from "./../components/common/navbaritem.vue"
   export default {
     name: 'musics',
     components: {
-      navbar,
-      navbaritem
-    }
+      // navbar,
+      // navbaritem
+    },
+      methods: {
+    itemClick() {
+        this.$router.replace(this.path);
+      console.log(11);
+     
+    },
+  },
     
   }
 </script>

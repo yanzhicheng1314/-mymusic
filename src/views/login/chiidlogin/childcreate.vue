@@ -49,6 +49,7 @@ import {getcellphone}from "../../../network/login"
       },
       clicknext(){
            getcellphone({phone:this.phoneNumber}).then((res)=>{
+         console.log(res);
         if(res.data.exist===1){
          this.show=true
           setTimeout(()=>{

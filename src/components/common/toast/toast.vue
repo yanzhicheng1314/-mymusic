@@ -32,5 +32,6 @@
     line-height: 40px;
     color: #fff;
     font-size: 14px;
+    border-radius: 60px;
   }
 </style>

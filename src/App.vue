@@ -1,27 +1,49 @@
 <template>
   <div id="app">
-    
-  <router-view class="appid"/>
+    <Mine/>
+    <el-container style="height: 100vh; border: 1px solid #eee">
+  <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
+    <el-menu :default-openeds="['1', '3']">  
+        <el-menu-item-group>
+         <el-menu-item index="1-1">
+         <router-link to="/home">发现音乐</router-link> 
+         </el-menu-item>
+           <el-menu-item index="1-2">
+         <router-link to="/topic">我的音乐</router-link> 
+         </el-menu-item>
+           <el-menu-item index="1-2">
+         <router-link to="/search">搜索</router-link> 
+         </el-menu-item>
+        </el-menu-item-group>          
+    </el-menu>
+  </el-aside>
+   <router-view/>
+</el-container>
+
   </div>
-  
 </template>
 
 <script>
+import Mine from "./views/mine/Mine.vue"
 
 export default {
   name:'App',
   components: {
- 
+       Mine
   },
+ 
 
     
 }
 </script>
 <style lang="less" scoped>
-.appid{
-    height: 896px;
-    width: 414px;
-    margin: 0 auto; 
-}
-
+  .el-header {
+    background-color: #B3C0D1;
+    color: #333;
+    line-height: 60px;
+  }
+  
+  .el-aside {
+    color: #333;
+  }
 </style>

@@ -1,52 +1,56 @@
 <template>
   <div class="clooection-block">
-    <div class="block-padding">
-      <div class="title">
-        <h3>新歌榜</h3>
-        <a href="#">更多</a>
-      </div>
-      <div class="list clearfix">
-        <div class="item">
-          <div class="img-warpper">
-            <img src="" alt="">
-          </div>
-          <div class="main">少年(童声版)</div>
-          <div class="gary">水观音</div>
-        </div>
-      </div>
-    </div>
+     <h3 class="tilte" style="font-size:24px;">华语歌单</h3>
+          <div class="items">
+       <div class="item"   
+       v-for="(item,index) in recommends" :key="index">  
+              <div class="grid-content bg-purple"
+              @click="items(item.id)">             
+                 <img :src="item.coverImgUrl" alt="">
+                  <p class="name">{{item.name}}</p>
+                   </div>  
+                  </div>
+     </div>
+     <!-- <el-row>
+</el-row> -->
   </div>
 </template>
-
+/**
+ * 华语歌单
+ */
 <script>
+
   export default {
-    name: 'musiclistview',
+    name: 'musiclistview', 
+    props:{
+    recommends:{
+      type:Array,
+     default() {
+        return {}
+      }
+    }
+    },
+    methods: {
+      items(id){
+          this.$router.push({name:'detail',params:{id}})
+      }
+    }
     
   }
 </script>
 
 <style scoped>
-  .clooection-block{
-    background-color: #f8f8f8;
-    padding: 5px 0;
+
+ .item img{
+   width: 150px;
+ 
+ }
+
+  .items{
+      display: flex;
   }
-  .block-padding{
-    display: flex;
-    margin: 14px 0 18px;
+  .item{
+    flex: 1;
   }
-   .title h3 {
-    flex: 1 1 0%;
-    display: block;
-    font-weight: 700;
-    font-size: 20px;
-  }
-  /* .list{
-    width: 100%;
-  } */
-  /* .list .item{
-    float: left;
-    width: 31.33%;
-    padding: 0 10px;
-    margin-bottom: 10%;
-  } */
+
 </style>

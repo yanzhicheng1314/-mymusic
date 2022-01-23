@@ -1,16 +1,25 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 const Home=()=>import("../views/home/Home.vue")
-const Mine=()=>import("../views/mine/Mine.vue")
+
 const Search=()=>import("../views/search/Search.vue")
 const Topic=()=>import("../views/topic/Topic.vue")
 
 const musics=()=>import("../views/musics.vue")
 
+
 const login=()=>import("../views/login/login.vue")
 const chiidlogin=()=>import("../views/login/chiidlogin/chiidlogin.vue")
 const childcreate=()=>import("../views/login/chiidlogin/childcreate.vue")
-// 手机注册验证
+
+
+/**
+ * 详情页
+ */
+ const detail=()=>import("../views/detail/detail.vue")
+/**
+ *  手机注册验证
+ */
 const childldcreatephone=()=>import("../views/login/chiidlogin/childldcreatephone.vue")
 
 Vue.use(VueRouter)
@@ -18,7 +27,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '',
-    redirect: '/musics'
+    redirect: '/home'
    
   },
   {
@@ -52,11 +61,6 @@ const routes = [
     component: Home
   },
   {
-    path: '/mine',
-    name: 'Mine',
-    component: Mine
-  },
-  {
     path: '/search',
     name: 'Search',
     component: Search
@@ -65,6 +69,14 @@ const routes = [
     path: '/topic',
     name: 'Topic',
     component: Topic
+  },
+  /**
+   * 详情页
+   */
+  {
+    path: '/detail',
+    name: 'detail',
+    component: detail
   }
 
 
