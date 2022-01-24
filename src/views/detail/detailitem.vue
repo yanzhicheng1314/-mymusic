@@ -57,6 +57,7 @@
 <style scoped>
 .gequlieb{
   margin-left: 30px;
+  margin: 100px 0 30px 30px;
 }
 .lieb{
   font-size: 20px;

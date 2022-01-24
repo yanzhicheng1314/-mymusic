@@ -2,9 +2,6 @@
   <div class="detail">
      <detailitem :details='details'/>
      <detailsongs :songs='songs' @sid='suid'/>
-       <div class="player">
- <audio :src="musicUrl" controls autoplay></audio> 
- </div>
   </div>
 </template>
 
@@ -26,11 +23,10 @@ getcheckmusic
     },
     data() {
       return {
-        songid: null,
+        songid: null,  //详情ID
         details:{},
-        songs:[],
-        musicUrl:'',
-         userid:null
+        songs:[],  
+         userid:null //歌曲ID
 
       };
     },
@@ -44,7 +40,6 @@ getcheckmusic
        * 获取歌单详情
        */
        this.songid=this.$route.params.id
-       console.log(this.songid);
       getplaylistdetail({id:this.songid}).then((res)=>{
           this.details= res.data.playlist
       })
@@ -55,11 +50,14 @@ getcheckmusic
        .then((res)=>{
         this.songs=res.data.songs
        })
+       /**
+        * 检查歌曲是否有权限
+        */
           if(this.userid==null){     
            
           }else{
   getcheckmusic({id:this.userid}).then((res)=>{
-         console.log(res+'ssss');
+         console.log(res+'不好意思');
           })
           }
      
@@ -69,6 +67,6 @@ getcheckmusic
   }
 </script>
 
-<style>
-  
+<style scoped>
+ 
 </style>

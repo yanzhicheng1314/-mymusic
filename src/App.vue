@@ -14,22 +14,28 @@
            <el-menu-item index="1-2">
          <router-link to="/search">搜索</router-link> 
          </el-menu-item>
+          <el-menu-item index="1-2">
+         <router-link to="/play">歌单</router-link> 
+         </el-menu-item>
         </el-menu-item-group>          
     </el-menu>
   </el-aside>
    <router-view/>
 </el-container>
 
+<navbar class="navbar-item"/>
+
   </div>
 </template>
 
 <script>
 import Mine from "./views/mine/Mine.vue"
-
+import navbar from  "./components/common/navbar.vue"
 export default {
   name:'App',
   components: {
-       Mine
+       Mine,
+       navbar
   },
  
 
@@ -46,4 +52,5 @@ export default {
   .el-aside {
     color: #333;
   }
+ 
 </style>

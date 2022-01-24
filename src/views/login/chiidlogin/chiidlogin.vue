@@ -1,70 +1,89 @@
 <template>
   <div class="chiidlogin">
+   
     <Nav>
       <div slot="left" @click="xclick" class="left">&lt;</div>
       <div slot="center">立即登录</div>
     </Nav>
-    <div class="input-group margin-top">
-      <input type="tel" v-model="phone" placeholder="输入手机号" />
-    </div>
-    <div class="input-group">
-      <input type="password" v-model="pass" placeholder="密码" />
-    </div>
+    <el-form :model="loginForm" :rules="loginformrules"
+     ref="ruleForm" 
+    label-width="100px" class="demo-ruleForm">
+  <el-form-item label="手机号码" prop="phone">
+    <el-input v-model="loginForm.phone"></el-input>
+  </el-form-item>
+  <el-form-item label="密码" prop="pass">
+    <el-input v-model="loginForm.pass" type='password'></el-input>
+  </el-form-item>
+  </el-form>
+
+
     <div class="button-next" @click="loginclick">登录</div>
-   <toast :message='message' :show='show'/>
+   
   </div>
 </template>
 
 <script>
 import Nav from "../../../components/common/Nav.vue";
 
-import toast from "../../../components/common/toast/toast.vue"
 
 import {getloginphone}from "../../../network/login"
 export default {
   name: "chiidlogin",
   components: {
     Nav,
-    toast
+   
   },
   data() {
     return {
-      phone: "",
-      pass: "",
-      message:'',
-      show:false,
-   ucodes:{
-    ucode:0,
-      uname:'',
-      uid:0  
-    }  
-    };
+  
+     currentUser:null, //当前用户
+      isLogin:false,   //是否登录
+      token:'',    //登录后的token
+  
+      loginForm :{
+         phone: '',
+      pass: ''
+      },
+    
+        loginformrules: {
+          phone: [
+            { required: true, message: '请输入号码', trigger: 'blur' },
+            {min: 11, max: 11, message: '请输入11位号码', trigger: 'blur' }
+          ],  
+          pass: [
+              { required: true, message: '请输入密码', trigger: 'blur' },
+            { min: 6, max: 18, message: '长度在 6 到 18 个字符', trigger: 'blur' }
+          ],
+    }
+    }
+    
   },
   methods: {
     xclick() {
       this.$router.go(-1);
     },
       loginclick(){
-   getloginphone({phone:this.phone,password:this.pass}).then((res)=>{
-      console.log(res);
-      if(res.data.code>=200&&res.data.code<=300){
-        this.ucodes.ucode=res.data.code
-      this.ucodes.uname=res.data.profile.nickname
-     this.ucodes.uid=res.data.account.id
-     this.message='恭喜你登录成功啦'
-     this.$store.commit('setid',this.ucodes)  
+        this.$refs.ruleForm.validate((valid)=>{
+           
+  getloginphone({phone:this.loginForm.phone,password:this.loginForm.pass})
+  .then((res)=>{   
+     console.log(res);        
+      if(res.data.code==200){ 
+     window.sessionStorage.setItem('token',res.data.token);
+         window.sessionStorage.setItem('token',res.data.profile.nickname);
+      //  this.currentUser= res.data.profile.nickname
+      this.$store.commit('userid',this.currentUser)  
         setTimeout(()=>{
-           this.show=true
+          this.$message.success('登录成功')
          this.$router.push({name:'Home'})
         },2000) 
       }else{
-         this.message='账号或密码错误，请重新登录'
-         this.show=true
-         setTimeout(()=>{
-           this.show=false
-         },2000)
+        this.$message.error('登录失败')
+        
       }
    })
+        })
+ 
   }
   },
 
@@ -77,19 +96,13 @@ export default {
   width: 414px;
   margin: 0 auto;
 }
-.input-group {
-  width: 90%;
-  height: 34px;
-  line-height: 34px;
-  border-bottom: 3px solid #bcbdbc;
-  margin: 10px auto;
+.el-form-item{
+  margin-top: 20px;
 }
-.input-group > input {
-  outline: none;
-  width: 100%;
-  height: inherit;
-  font-size: 18px;
+.el-form-item__label{
+ line-height: 75px;
 }
+
 
 .button-next {
   width: 80%;
@@ -97,7 +110,7 @@ export default {
   height: 35px;
   line-height: 35px;
   font-size: 18px;
-  background-color: red;
+  background-color: rgb(253, 3, 3);
   border-radius: 60px;
   text-align: center;
 }

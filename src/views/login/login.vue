@@ -35,7 +35,7 @@
     height: 896px;
     width: 414px;
     margin: 0 auto;
-    background-color: red;
+    background-color: rgb(223, 216, 216);
     position: relative;
   }
 .x{

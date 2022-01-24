@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>搜索</h2>
+    <h2>3333</h2>
   </div>
 </template>
 

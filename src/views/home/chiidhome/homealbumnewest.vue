@@ -1,9 +1,9 @@
 <template>
   <div class="homealbumnewest">
-    <h3 class="tilte" style="font-size: 24px">推荐歌单</h3>
-    <!-- <div class="items"> -->
+    <h3 class="tilte" style="font-size: 24px">最新专辑</h3>
+    <div class="items">
     <div class="item" v-for="(item, index) in albumslist" :key="index">
-      <el-col :span="8">
+      
         <div class="grid-content bg-purple">
           <img :src="item.picUrl" :alt="item.name" />
           <p class="name">
@@ -12,10 +12,11 @@
             <span>{{ item.artist.name }}</span>
           </p>
           <div class="bofangclick" @click="songClick(item.copyrightId)">
-            <img src="../../../assets/img/home/播放.png" alt="" />
+           <div class="item-imag"> <img src="../../../assets/img/home/播放.png" alt=""/></div>
           </div>
         </div>
-      </el-col>
+        
+    </div>
     </div>
   </div>
 </template>
@@ -37,8 +38,8 @@ export default {
     
       getsongurl({ id: id }).then((res) => {
         let url = res.data.data[0].url;
-      
-        this.$parent.musicUrl = url;
+        this.$store.commit('songurl',url)
+       
       });
     },
   },
@@ -54,7 +55,27 @@ export default {
   height: 40px;
 }
 .bofangclick img {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
+}
+.items{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+  position: relative;
+}
+.item{
+  width: 250px;
+  height: 150px;
+}
+.bofangclick{
+  position: relative;
+  width: 50px;
+}
+.item-imag{
+  position: absolute;
+  top: -50px;
+  left: 10px;
 }
 </style>

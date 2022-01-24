@@ -4,9 +4,9 @@
     <childhomebannerlist :banner='banner'/>
     <musiclistview :recommends='recommends'/>
     <homealbumnewest :albumslist="albumslist"/>
-    <div class="player">
+    <!-- <div class="player">
  <audio :src="musicUrl" controls autoplay></audio> 
- </div> 
+ </div>  -->
   </div>
 </template>
 
@@ -33,7 +33,7 @@ getalbumnewest,
        banner: [],
        recommends:[],
        albumslist:[],  
-       musicUrl: '',
+      //  musicUrl: '',
      };
    },
    created () {

@@ -1,10 +1,18 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+/**
+ * 首页
+ */
 const Home=()=>import("../views/home/Home.vue")
-
+/**
+ * 搜索
+ */
 const Search=()=>import("../views/search/Search.vue")
 const Topic=()=>import("../views/topic/Topic.vue")
-
+/**
+ * 歌单
+ */
+const play=()=>import("../views/play/play.vue")
 const musics=()=>import("../views/musics.vue")
 
 
@@ -77,6 +85,14 @@ const routes = [
     path: '/detail',
     name: 'detail',
     component: detail
+  },
+  /**
+   * 歌单
+   */
+  {
+    path: '/play',
+    name: 'play',
+    component: play
   }
 
 
